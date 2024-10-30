@@ -149,7 +149,7 @@ ax.set_xticklabels([
 plt.legend()
 
 # Save the figure
-plt.savefig("figures/SIS3/Step_Response.png", dpi=300, bbox_inches='tight')
+plt.savefig("figures/Step_Response.png", dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()
@@ -170,4 +170,4 @@ df_metrics = pd.DataFrame(metrics)
 print(tabulate(df_metrics, headers='keys', tablefmt='pretty', floatfmt=".6f"))
 
 # Optionally, save the metrics to a CSV file
-df_metrics.to_csv('csv/SIS3/step.csv', index=False)
+df_metrics.to_csv('csv/step.csv', index=False)
