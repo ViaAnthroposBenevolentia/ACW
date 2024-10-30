@@ -1,6 +1,8 @@
 import control as ct
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+from tabulate import tabulate
 
 # Define the transfer function: G_k(s) = 2200000 / (2.4s^2 + 1400s + 2300000)
 numerator = [2200000]
@@ -147,7 +149,25 @@ ax.set_xticklabels([
 plt.legend()
 
 # Save the figure
-plt.savefig("figures/Step_Response.png", dpi=300, bbox_inches='tight')
+plt.savefig("figures/SIS3/Step_Response.png", dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()
+
+# Table and csv file
+# Create a DataFrame to hold the metrics
+metrics = {
+    'Metric': ['Rise Time', 'Settling Time', 'Settling Min', 'Settling Max',
+               'Overshoot', 'Undershoot', 'Peak', 'Peak Time', 'Steady-State Value', 'Steady-State Error'],
+    'Value': [info['RiseTime'], info['SettlingTime'], info['SettlingMin'], info['SettlingMax'],
+              info['Overshoot'], info['Undershoot'], info['Peak'], info['PeakTime'],
+              info['SteadyStateValue'], abs(1 - info['SteadyStateValue'])]
+}
+
+df_metrics = pd.DataFrame(metrics)
+
+# Print the table using tabulate for better formatting
+print(tabulate(df_metrics, headers='keys', tablefmt='pretty', floatfmt=".6f"))
+
+# Optionally, save the metrics to a CSV file
+df_metrics.to_csv('csv/SIS3/step.csv', index=False)
