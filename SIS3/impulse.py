@@ -65,14 +65,14 @@ df_metrics = pd.DataFrame(metrics)
 print(tabulate(df_metrics, headers='keys', tablefmt='pretty', floatfmt=".6f"))
 
 # Save the metrics to a CSV file
-df_metrics.to_csv('csv/SIS3/impulse.csv', index=False)
+df_metrics.to_csv('csv/impulse.csv', index=False)
 
 # Show legend
 plt.legend()
 
 # Save the figure
 plt.figure('Impulse Response')
-plt.savefig("figures/SIS3/Impulse_Response.png", dpi=300, bbox_inches='tight')
+plt.savefig("figures/Impulse_Response.png", dpi=300, bbox_inches='tight')
 
 # Show the plot
 plt.show()
