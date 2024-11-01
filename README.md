@@ -1,8 +1,11 @@
 # SIS Graphs Source Code and Results
 
-## Run Locally
+##Edit and Run in Google Colab
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ViaAnthroposBenevolentia/ACW/blob/main/SIS3/ColabNotebook.ipynb)
 
-1. Clone the repo
+## To Run Locally
+
+1. Clone the repository
 
 ```
 git clone https://github.com/ViaAnthroposBenevolentia/ACW.git
