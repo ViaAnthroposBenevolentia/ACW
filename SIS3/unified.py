@@ -419,7 +419,7 @@ def nyquist_plot_analysis(G_k):
     imag = mag.flatten() * np.sin(phase.flatten())
 
     # Initialize the plot
-    fig, ax = plt.subplots(figsize=(16, 12))
+    fig, ax = plt.subplots(figsize=(15, 9))
 
     # Plot the Nyquist diagram
     ax.plot(real, imag, 'b', label='Nyquist Plot')
@@ -450,6 +450,8 @@ def nyquist_plot_analysis(G_k):
     ax.legend()
 
     # Ensure aspect ratio is equal
+    ax.set_xlim(-3, 3)
+    ax.set_ylim(-2, 2)
     ax.set_aspect('equal', 'box')
 
     # Calculate gain and phase margins
@@ -509,7 +511,7 @@ def nyquist_plot_analysis(G_k):
     plt.close()
 
     # Display the plot
-    plt.figure(figsize=(16, 12))
+    plt.figure(figsize=(15, 9))
     img = plt.imread("figures/Nyquist_Plot.png")
     plt.imshow(img)
     plt.axis('off')

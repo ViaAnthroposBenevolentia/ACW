@@ -12,14 +12,14 @@ G_k = ct.TransferFunction(numerator, denominator)
 omega = np.logspace(-1, 5, 5000)  # From 0.1 to 100,000 rad/s
 
 # Compute the frequency response
-mag, phase, omega = ct.freqresp(G_k, omega)
+mag, phase, omega = ct.frequency_response(G_k, omega)
 
 # Extract real and imaginary parts
 real = mag.flatten() * np.cos(phase.flatten())
 imag = mag.flatten() * np.sin(phase.flatten())
 
 # Initialize the plot
-fig, ax = plt.subplots(figsize=(16, 8))
+fig, ax = plt.subplots(figsize=(15, 9))
 
 # Plot the Nyquist diagram
 ax.plot(real, imag, 'b', label='Nyquist Plot')
@@ -36,7 +36,7 @@ for idx in arrow_indices[:-1]:  # Skip the last index to avoid out-of-bounds err
     # Calculate the difference in x and y for the arrow direction
     dx = real[idx + 1] - real[idx]
     dy = imag[idx + 1] - imag[idx]
-    
+
     # Plot the arrow to indicate frequency progression
     ax.arrow(real[idx], imag[idx], dx, dy,
              head_width=0.05 * mag[idx], head_length=0.05 * mag[idx],
@@ -50,6 +50,8 @@ ax.grid(True)
 ax.legend()
 
 # Ensure aspect ratio is equal
+ax.set_xlim(-3, 3)
+ax.set_ylim(-2, 2)
 ax.set_aspect('equal', 'box')
 
 # Calculate gain and phase margins
@@ -76,7 +78,7 @@ if pm > 0 and wp is not None:
     left_idx = np.argmin(np.abs(real + 1))  # Find the point closest to (-1, 0)
     crossover_real = real[left_idx]
     crossover_imag = imag[left_idx]
-    
+
     # Draw a line from origin point to the crossover point on the left side
     ax.plot([crossover_real, 0], [crossover_imag, 0], 'g--', label=f'Phase Margin Line ({pm:.2f}°)')
     ax.plot(crossover_real, crossover_imag, 'go', label='Phase Crossover Point')
